@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EchoBeat – Music Player</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%23a56add'/%3E%3C/svg%3E">
+  <!-- <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='10' fill='%2300d95f'/%3E%3C/svg%3E"> -->
+  <link rel="preconnect" href="https://is3-ssl.mzstatic.com">
+  <link rel="preconnect" href="https://itunes.apple.com">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">♪</div>
+        <div class="title">EchoBeat</div>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" data-section="search">Search</button>
+        <button class="nav-btn" data-section="library">Your Library</button>
+        <button class="nav-btn" data-section="queue">Play Queue</button>
+      </nav>
+      <!-- <div class="hint">
+        <p>Tip: Search any artist (e.g., <strong>Arijit Singh</strong>) to play 30s previews via iTunes API.</p>
+      </div> -->
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="searchbar">
+          <input id="searchInput" type="text" placeholder="Search songs, artists (e.g., Arijit Singh)"/>
+          <button id="searchBtn" aria-label="Search">Search</button>
+        </div>
+        <div class="local-uploader">
+          <label class="upload-label">
+            <input id="fileInput" type="file" accept="audio/*" multiple hidden/>
+            <span class="btn">+ Add local songs</span>
+          </label>
+        </div>
+      </header>
+
+      <section id="search" class="section visible">
+        <h2>Search Results</h2>
+        <div id="results" class="grid"></div>
+      </section>
+
+      <section id="library" class="section">
+        <h2>Your Library (Local)</h2>
+        <div id="libraryList" class="grid"></div>
+      </section>
+
+      <section id="queue" class="section">
+        <h2>Play Queue</h2>
+        <div id="queueList" class="grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="player">
+    <div class="nowplaying">
+      <div class="cover" id="coverArt">🎵</div>
+      <div class="meta">
+        <div id="trackTitle" class="title">Nothing playing</div>
+        <div id="trackArtist" class="artist"></div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="btnShuffle" title="Shuffle">🔀</button>
+      <button id="btnPrev" title="Previous">⏮️</button>
+      <button id="btnPlay" title="Play/Pause">▶️</button>
+      <button id="btnNext" title="Next">⏭️</button>
+      <button id="btnRepeat" title="Repeat">🔁</button>
+    </div>
+
+    <div class="timeline">
+      <span id="currentTime">0:00</span>
+      <input id="seek" type="range" min="0" max="100" value="0" step="0.1"/>
+      <span id="duration">0:00</span>
+      <div class="skip">
+        <button id="skipBack" title="Back 10s">-10s</button>
+        <button id="skipFwd" title="Forward 10s">+10s</button>
+      </div>
+    </div>
+
+    <div class="volume">
+      <span>🔊</span>
+      <input id="volume" type="range" min="0" max="1" step="0.01" value="1" />
+    </div>
+  </footer>
+
+  <audio id="audio"></audio>
+  <script src="./app.js"></script>
+</body>
+</html>
